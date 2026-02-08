@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)file:///C:/Users/usar/Desktop/FDFD.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTA Ampara - Official Portal</title>
+    <link href="./VTA Ampara - Official Portal 02_files/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./VTA Ampara - Official Portal 02_files/animate.min.css">
+    
+    <style>
+        :root {
+            --vta-main: #1a237e; /* Navy Blue */
+            --vta-gold: #ffc107; /* Gold */
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        body { 
+            background-color: #e9ecef;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vta-nav {
+            background: var(--vta-main);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-bottom: 5px solid var(--vta-gold);
+        }
+
+        .container-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .search-card {
+            background: var(--glass);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+        }
+
+        .card-inner {
+            padding: clamp(20px, 5vw, 50px);
+        }
+
+        .vta-header h2 {
+            color: var(--vta-main);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .input-group-vta {
+            display: flex;
+            gap: 0;
+            margin-top: 30px;
+        }
+
+        .vta-input {
+            border: 2px solid #ced4da;
+            padding: 15px 20px;
+            border-radius: 12px 0 0 12px;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+
+        .vta-btn {
+            background: var(--vta-main);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 12px 12px 0;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .vta-btn:hover { background: #0d124a; }
+
+        .res-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border-left: 8px solid var(--vta-main);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .res-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #6c757d;
+            text-transform: uppercase;
+        }
+
+        .res-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 15px;
+        }
+        
+        .res-value.small-font {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .instructor-footer {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .inst-highlight { color: var(--vta-main); text-decoration: underline; }
+
+        @media (max-width: 576px) {
+            .input-group-vta { flex-direction: column; }
+            .vta-input { border-radius: 12px; margin-bottom: 10px; }
+            .vta-btn { border-radius: 12px; padding: 15px; }
+            .card-inner { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="vta-nav">
+    <h1 class="h3 mb-0">VOCATIONAL TRAINING AUTHORITY OF SRI LANKA</h1>
+</div>
+
+<div class="container-main">
+    <div class="search-card animate__animated animate__fadeInUp">
+        <div class="card-inner">
+            <div class="vta-header text-center">
+                <h2>DVTC - NINTAVUR AMPARA</h2>
+                <p class="text-muted">DVTC-NINTAVUR PARTIME-COURSES </p>
+            </div>
+
+            <div class="search-wrap">
+                <label class="small fw-bold text-muted mb-2">CERTIFICATE INQUIRY / STUDENT SEARCH</label>
+                <div class="input-group-vta">
+                    <input type="text" id="nicInput" class="vta-input" placeholder="Enter NIC to search..." onkeyup="if(event.key === &#39;Enter&#39;) searchStudent()">
+                    <button class="vta-btn" onclick="searchStudent()">SEARCH</button>
+                </div>
+            </div>
+
+            <div id="output" class="mt-4">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
+
+        <div class="instructor-footer">
+            Institutional Instructor: <span class="inst-highlight">Mr. A.E Christo</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const trainees = [
+        {"Name With Initials":"N.M. Farvees Musharraf","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0001","NIC":"200525404551","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-01","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"A.B.Mohammed Fahir","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0002","NIC":"200012802331","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-02","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"M.A.Mohamed Asaam","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0003","NIC":"200229504313","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-03","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"J.Mohamed Mubassir","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0004","NIC":"200215300480","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-04","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"M.B.Mohamed Ranees","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0005","NIC":"861902560V","Finger Print ID":"254853","Status":"Not Complete","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"L.Hasnath Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0006","NIC":"200425001641","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-04","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"S.L.Mohammed Yasir","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0007","NIC":"991350926V","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-05","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"N. Shifky Ahamed ","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0008","NIC":"200026902380","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-06","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"M.N.Asky Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0009","NIC":"200028003963","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-07","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"J.Silmy Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0010","NIC":"200518601979","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-08","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"M.Mohammed Mufas","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0011","NIC":"200628804474","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-09","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"J.Mohammed Azad","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0012","NIC":"982973945V","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-10","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"B.Mohammed Haneef","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0013","NIC":"200100202458","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-11","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"A.S.Mohamed Sameer","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0014","NIC":"970213899V","Finger Print ID":"254853","Status":"Not Complete","Certificate Number":"PT/QS/23/01/152-12","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"S.L.Mohammed Ihjas","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0015","NIC":"991580727V","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-13","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"M.T.Mohamed Aakil","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B1","MIS Number":"JG/23/PTBOQ/1/0016","NIC":"200100901980","Finger Print ID":"254853","Status":"Complete","Certificate Number":"PT/QS/23/01/152-14","Back Serial Number":"","Affective Date":"2023.06.03 "},
+        {"Name With Initials":"F.Ahamed Sayan","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0001","NIC":"200333600903","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-01","Back Serial Number":"044171","Affective Date":"2023.12.17"},
+        {"Name With Initials":"R.Kapisek","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0002","NIC":"200117403892","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-02","Back Serial Number":"044172","Affective Date":"2023.12.17"},
+        {"Name With Initials":"A.H.Mohamed Jesran","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0003","NIC":"200721901370","Finger Print ID":"277379","Status":"Drop out","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.H.Nihal Faris","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0004","NIC":"199012602551","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-03","Back Serial Number":"044173","Affective Date":"2023.12.17"},
+        {"Name With Initials":"T.Zaheem Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0005","NIC":"200200702321","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-04","Back Serial Number":"044174","Affective Date":"2023.12.17"},
+        {"Name With Initials":"A.S.Mohamed Sakeer","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0006","NIC":"200517403542","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-05","Back Serial Number":"044175","Affective Date":"2023.12.17"},
+        {"Name With Initials":"I.Mohamed Haneek","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0007","NIC":"200320900562","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-06","Back Serial Number":"044176","Affective Date":"2023.12.17"},
+        {"Name With Initials":"A.Mohammed Aathif","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0008","NIC":"200328413784","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-07","Back Serial Number":"044177","Affective Date":"2023.12.17"},
+        {"Name With Initials":"A.B.Mohamed Najath","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0009","NIC":"200220502298","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-08","Back Serial Number":"044178","Affective Date":"2023.12.17"},
+        {"Name With Initials":"M.F.Mohamed Nafri Inaas","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0010","NIC":"200518902564","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-09","Back Serial Number":"044179","Affective Date":"2023.12.17"},
+        {"Name With Initials":"K.R.M.Asmath Sahee","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0011","NIC":"200209203585","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-10","Back Serial Number":"044180","Affective Date":"2023.12.17"},
+        {"Name With Initials":"A.R.Ahamed Althaf","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0012","NIC":"200229601000","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-11","Back Serial Number":"044181","Affective Date":"2023.12.17"},
+        {"Name With Initials":"A.L.Mohamed Rizan","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0013","NIC":"198808901537","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-12","Back Serial Number":"044182","Affective Date":"2023.12.17"},
+        {"Name With Initials":"N.Muhammathu Ashrif","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0014","NIC":"200533203192","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-13","Back Serial Number":"044183","Affective Date":"2023.12.17"},
+        {"Name With Initials":"M.M.Dammika Thushara","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2023 B2","MIS Number":"JG/23/PTBOQ/2/0015","NIC":"200036003429","Finger Print ID":"277379","Status":"Complete","Certificate Number":"PT/QS/23/01/152-14","Back Serial Number":"044184","Affective Date":"2023.12.17"},
+        {"Name With Initials":"I.M.Al-Jaaruth","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0001","NIC":"971711566V","Finger Print ID":"295174","Status":"Complete","Certificate Number":"PT/QS/24/01/152-01","Back Serial Number":"037617","Affective Date":"2024.10.20"},
+        {"Name With Initials":"N.Woseem Muhamaed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0002","NIC":"200105600174","Finger Print ID":"295178","Status":"Complete","Certificate Number":"PT/QS/24/01/152-02","Back Serial Number":"037618","Affective Date":"2024.10.20"},
+        {"Name With Initials":"J.Saath Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0003","NIC":"200436200253","Finger Print ID":"295182","Status":"Complete","Certificate Number":"PT/QS/24/01/152-03","Back Serial Number":"037619","Affective Date":"2024.10.20"},
+        {"Name With Initials":"M.A.Mohamed Mujahith","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0004","NIC":"200208700384","Finger Print ID":"295184","Status":"Complete","Certificate Number":"PT/QS/24/01/152-04","Back Serial Number":"037620","Affective Date":"2024.10.20"},
+        {"Name With Initials":"R.Muhammathu Asfaq","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0005","NIC":"200116403111","Finger Print ID":"295190","Status":"Complete","Certificate Number":"PT/QS/24/01/152-05","Back Serial Number":"037621","Affective Date":"2024.10.20"},
+        {"Name With Initials":"A.Muhammed Aiyas","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0006","NIC":"200134802697","Finger Print ID":"295201","Status":"Complete","Certificate Number":"PT/QS/24/01/152-06","Back Serial Number":"037622","Affective Date":"2024.10.20"},
+        {"Name With Initials":"F.M.Sakee","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0007","NIC":"200217703765","Finger Print ID":"295204","Status":"Complete","Certificate Number":"PT/QS/24/01/152-07","Back Serial Number":"037623","Affective Date":"2024.10.20"},
+        {"Name With Initials":"M.A.Nafrij Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0008","NIC":"200312800406","Finger Print ID":"295207","Status":"Complete","Certificate Number":"PT/QS/24/01/152-08","Back Serial Number":"037624","Affective Date":"2024.10.20"},
+        {"Name With Initials":"A.M.Farhath Ahnaf","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0009","NIC":"200110903170","Finger Print ID":"295211","Status":"Complete","Certificate Number":"PT/QS/24/01/152-09","Back Serial Number":"037625","Affective Date":"2024.10.20"},
+        {"Name With Initials":"C.M.U.Thariq Mohammeth","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0010","NIC":"992010959V","Finger Print ID":"295215","Status":"Complete","Certificate Number":"PT/QS/24/01/152-10","Back Serial Number":"037626","Affective Date":"2024.10.20"},
+        {"Name With Initials":"F.A.Mohamed Mufees","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0011","NIC":"991093079V","Finger Print ID":"295219","Status":"Complete","Certificate Number":"PT/QS/24/01/152-11","Back Serial Number":"037627","Affective Date":"2024.10.20"},
+        {"Name With Initials":"M.F.Abdul Rahman","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0012","NIC":"200310200307","Finger Print ID":"295223","Status":"Complete","Certificate Number":"PT/QS/24/01/152-12","Back Serial Number":"037628","Affective Date":"2024.10.20"},
+        {"Name With Initials":"M.S.Mohamed Sifan","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0013","NIC":"982743109V","Finger Print ID":"295227","Status":"Complete","Certificate Number":"PT/QS/24/01/152-13","Back Serial Number":"037629","Affective Date":"2024.10.20"},
+        {"Name With Initials":"N.Mohamed Nismi","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0014","NIC":"199902110236","Finger Print ID":"295291","Status":"Complete","Certificate Number":"PT/QS/24/01/152-14","Back Serial Number":"037630","Affective Date":"2024.10.20"},
+        {"Name With Initials":"B.F.Atheek Fouz","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0015","NIC":"200021802578","Finger Print ID":"295303","Status":"Complete","Certificate Number":"PT/QS/24/01/152-15","Back Serial Number":"037631","Affective Date":"2024.10.20"},
+        {"Name With Initials":"R.Fathees Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0016","NIC":"200321200356","Finger Print ID":"295317","Status":"Complete","Certificate Number":"PT/QS/24/01/152-16","Back Serial Number":"037632","Affective Date":"2024.10.20"},
+        {"Name With Initials":"M.N.Mohamed Ashrif","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2024 B1","MIS Number":"JG/24/PTBOQ/1/0017","NIC":"200404011359","Finger Print ID":"295319","Status":"Complete","Certificate Number":"PT/QS/24/01/152-17","Back Serial Number":"037633","Affective Date":"2024.10.20"},
+        {"Name With Initials":"K.L.Mohamed Najeeb","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0001","NIC":"200526803705","Finger Print ID":"170498","Status":"Complete","Certificate Number":"PT/QS/25/01/152-01","Back Serial Number":"057062","Affective Date":"2025.10.26"},
+        {"Name With Initials":"S.Paviraj","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0002","NIC":"931592645V","Finger Print ID":"170499","Status":"Complete","Certificate Number":"PT/QS/25/01/152-02","Back Serial Number":"057063","Affective Date":"2025.10.26"},
+        {"Name With Initials":"A.Mohamed Afreed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0003","NIC":"200528604254","Finger Print ID":"170500","Status":"Complete","Certificate Number":"PT/QS/25/01/152-03","Back Serial Number":"057064","Affective Date":"2025.10.26"},
+        {"Name With Initials":"F.Thasneem","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0004","NIC":"200528702893","Finger Print ID":"170501","Status":"Not Complete","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"A.R.Mohammed Aafith","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0005","NIC":"932650118V","Finger Print ID":"170502","Status":"Not Complete","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"R.Mohammed Rifky","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0006","NIC":"200329412634","Finger Print ID":"170503","Status":"Complete","Certificate Number":"PT/QS/25/01/152-04","Back Serial Number":"057065","Affective Date":"2025.10.26"},
+        {"Name With Initials":"M.N.Mohamed Habli","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0007","NIC":"993331473V","Finger Print ID":"170504","Status":"Complete","Certificate Number":"PT/QS/25/01/152-05","Back Serial Number":"057066","Affective Date":"2025.10.26"},
+        {"Name With Initials":"M.N.Husni Mohamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0008","NIC":"200620503050","Finger Print ID":"170505","Status":"Complete","Certificate Number":"PT/QS/25/01/152-06","Back Serial Number":"057067","Affective Date":"2025.10.26"},
+        {"Name With Initials":"A.S.Abdul Haq","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0009","NIC":"200627503132","Finger Print ID":"170506","Status":"Complete","Certificate Number":"PT/QS/25/01/152-07","Back Serial Number":"057068","Affective Date":"2025.10.26"},
+        {"Name With Initials":"M.N.Ammar Haneef","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0010","NIC":"200315413272","Finger Print ID":"170507","Status":"Complete","Certificate Number":"PT/QS/25/01/152-08","Back Serial Number":"057069","Affective Date":"2025.10.26"},
+        {"Name With Initials":"M.A.C.Ansaf Ahamed","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0011","NIC":"200200104135","Finger Print ID":"170508","Status":"Complete","Certificate Number":"PT/QS/25/01/152-09","Back Serial Number":"057070","Affective Date":"2025.10.26"},
+        {"Name With Initials":"A.A.R.Milhan","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0012","NIC":"200414701331","Finger Print ID":"170509","Status":"Not Complete","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"K.L.A.Mohamed Rushaik","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0013","NIC":"200211500334","Finger Print ID":"170510","Status":"Not Complete","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.B.Ahamed Sazni","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0014","NIC":"982954100V","Finger Print ID":"170511","Status":"Complete","Certificate Number":"PT/QS/25/01/152-10","Back Serial Number":"057071","Affective Date":"2025.10.26"},
+        {"Name With Initials":"M.A.Mohamed Nafli","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0015","NIC":"200436300070","Finger Print ID":"170512","Status":"Complete","Certificate Number":"PT/QS/25/01/152-11","Back Serial Number":"057072","Affective Date":"2025.10.26"},
+        {"Name With Initials":"A.Mohamed Fashrif","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0016","NIC":"200422400597","Finger Print ID":"170513","Status":"Complete","Certificate Number":"PT/QS/25/01/152-12","Back Serial Number":"057073","Affective Date":"2025.10.26"},
+        {"Name With Initials":"Z.Mohammed Riskan","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0017","NIC":"200428402791","Finger Print ID":"170514","Status":"Complete","Certificate Number":"PT/QS/25/01/152-13","Back Serial Number":"057074","Affective Date":"2025.10.26"},
+        {"Name With Initials":"K.Mohamed Haakil","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0018","NIC":"200328212612","Finger Print ID":"170515","Status":"Complete","Certificate Number":"PT/QS/25/01/152-14","Back Serial Number":"057075","Affective Date":"2025.10.26"},
+        {"Name With Initials":"A.Mohamed Siros","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0019","NIC":"200121203855","Finger Print ID":"170516","Status":"Complete","Certificate Number":"PT/QS/25/01/152-15","Back Serial Number":"057076","Affective Date":"2025.10.26"},
+        {"Name With Initials":"P.Kathirshan","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0020","NIC":"980311554V","Finger Print ID":"170517","Status":"Not Complete","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"K.Nilakshana","Course Name":"Quantiry Surveying - Preparation of BOQ","Year and Batch":"2025 B1","MIS Number":"JG/25/PBBQP100H/1/0021","NIC":"200281100281","Finger Print ID":"170518","Status":"Drop Out","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"Muhammadu Haniffa Nihal Faris","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"199012602551","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-01","Back Serial Number":"041827","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Faleel Mohammed-Sakee","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200217703765","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-02","Back Serial Number":"041828","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Rafiudeen Mohammed-Rifky","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200329412634","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-03","Back Serial Number":"041829","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Kanthavel-Arulnithy","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"783533405 V","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-04","Back Serial Number":"041830","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mahathevan-Pravinth","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200018903390","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-05","Back Serial Number":"041831","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Kanthasamy-Nilakshana","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200281100281","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-06","Back Serial Number":"041832","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Kesavan-Jashmitha","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200377800010","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-07","Back Serial Number":"041833","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Thaieb-Akzath Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200424400510","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-08","Back Serial Number":"041834","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Muhamathu Sathik- Ansaf Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200635300110","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-09","Back Serial Number":"041835","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Afreth-Mohemmeth-Anhaaf","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200624601441","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-10","Back Serial Number":"041836","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Jalaldeen-Hamthy Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200524600188","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-11","Back Serial Number":"041837","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Rafees-Sahan Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200602404770","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-12","Back Serial Number":"041838","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Aliyar Abdul Rahman-Milhan","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200414701331","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-13","Back Serial Number":"041839","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mohamed Ibrahim-Shifar Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200413900994","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-14","Back Serial Number":"041840","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mohamed Raheem Mohamed-Afras","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200201103540","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-15","Back Serial Number":"041841","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mohamed Alikan-Mohamed Mujahith","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200208700384","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-16","Back Serial Number":"041842","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Ilyas- Ahamath Mishraaf","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200528703938","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-17","Back Serial Number":"041843","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Farook-Thasneem","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200528702893","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-18","Back Serial Number":"041844","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Zainulabdeen Mohammed-Riskan","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200428402791","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-19","Back Serial Number":"041845","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Selvarajasivam-Shathursika","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200566803831","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-20","Back Serial Number":"041846","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Ahamed  Lebbei-Ruslin Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200227700123","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-21","Back Serial Number":"041847","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Abdul Nayeem-Ismiya","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"996910954 V","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-22","Back Serial Number":"041848","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Issadeen-Mohamed Haneek","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200320900562","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-23","Back Serial Number":"041849","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mohamed Anvar Mohamed-Ahnaf","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200322013742","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-24","Back Serial Number":"041850","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Jawfar-Saath Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200436200253","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-25","Back Serial Number":"041851","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Nafar Mohamed-Musnaf","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200335312510","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-26","Back Serial Number":"041852","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Jaganiya-Mohanaprahas","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"906360195 V","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-27","Back Serial Number":"041853","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Jeevan-Kiroshan","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"981110552 V","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-28","Back Serial Number":"041854","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Abdul Samathu-Mohamed Sakeer","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200517403542","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-29","Back Serial Number":"041855","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mohamed Munafeer-Fatheen shamha","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200352702900","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-30","Back Serial Number":"041856","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Sriskantharajah-Sriharan","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"972531014 V","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-31","Back Serial Number":"041857","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Thaha Zainudeen Mohamed-Rikas","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"980912809 V","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-32","Back Serial Number":"041858","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Jabbar-Mohamed Satham","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200300101959","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-33","Back Serial Number":"041859","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Mohamed Alikan Mohamed-Mursith","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200405910402","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-34","Back Serial Number":"041860","Affective Date":"2025.01.19"},
+        {"Name With Initials":"Nasrutheen-Nijath","Course Name":"Surveying and Levelling","Year and Batch":"2025 B1(Batti)","MIS Number":"(SL/2025/117/01)","NIC":"200203303508","Finger Print ID":"","Status":"Participation","Certificate Number":"PT/SL/25/01/117-35","Back Serial Number":"041861","Affective Date":"2025.01.19"},
+        {"Name With Initials":"M.N.Mohamed Ashrif","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0001","NIC":"200404011359","Finger Print ID":"185334","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-01","Back Serial Number":"054294","Affective Date":"2025.08.03"},
+        {"Name With Initials":"U.Utsakan","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0002","NIC":"950182563V","Finger Print ID":"185336","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-02","Back Serial Number":"054295","Affective Date":"2025.08.03"},
+        {"Name With Initials":"S.Paviraj","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0003","NIC":"931592645V","Finger Print ID":"185337","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-03","Back Serial Number":"054296","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.S.Mohamed Nishath","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0004","NIC":"200513301651","Finger Print ID":"185340","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-04","Back Serial Number":"054297","Affective Date":"2025.08.03"},
+        {"Name With Initials":"T.M.Zahfer Ali","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0005","NIC":"200525702903","Finger Print ID":"185341","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-05","Back Serial Number":"054298","Affective Date":"2025.08.03"},
+        {"Name With Initials":"A.R.Mohammed Anoof","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0006","NIC":"200632403200","Finger Print ID":"185344","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-06","Back Serial Number":"054299","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.Infas Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0007","NIC":"200402313111","Finger Print ID":"185346","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-07","Back Serial Number":"054300","Affective Date":"2025.08.03"},
+        {"Name With Initials":"A.R.Abdul Halik","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0008","NIC":"200301403863","Finger Print ID":"185347","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-08","Back Serial Number":"054301","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.N.Husni Mohamed ","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0009","NIC":"200620503050","Finger Print ID":"185350","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-09","Back Serial Number":"054302","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.I.Mohamed Nikas","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0010","NIC":"972631434V","Finger Print ID":"185352","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-10","Back Serial Number":"054303","Affective Date":"2025.08.03"},
+        {"Name With Initials":"A.S.Abdul Haq","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0011","NIC":"200627503132","Finger Print ID":"185353","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-11","Back Serial Number":"054304","Affective Date":"2025.08.03"},
+        {"Name With Initials":"N.Asjath Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0012","NIC":"200000102691","Finger Print ID":"185354","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-12","Back Serial Number":"054305","Affective Date":"2025.08.03"},
+        {"Name With Initials":"F.Mohamed Aakil","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0013","NIC":"200415402220","Finger Print ID":"185355","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-13","Back Serial Number":"054306","Affective Date":"2025.08.03"},
+        {"Name With Initials":"J.Mohamed Lukman","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0014","NIC":"200526704404","Finger Print ID":"185356","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-14","Back Serial Number":"054307","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.A.Mohammathu Faham","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0015","NIC":"200422001206","Finger Print ID":"185357","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-15","Back Serial Number":"054308","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.R.Mohamed Sudhyz Ruhaimi","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0016","NIC":"200529404690","Finger Print ID":"185358","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-16","Back Serial Number":"054309","Affective Date":"2025.08.03"},
+        {"Name With Initials":"N.Mohamed Nafasir","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0017","NIC":"200311100772","Finger Print ID":"185360","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-17","Back Serial Number":"054310","Affective Date":"2025.08.03"},
+        {"Name With Initials":"A.S.Mohamed Sawmy","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0018","NIC":"200016301999","Finger Print ID":"185361","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-18","Back Serial Number":"054311","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.R.Mohamed Aakib","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0019","NIC":"200602103289","Finger Print ID":"185363","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-19","Back Serial Number":"054312","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.S.Mujeeb","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0020","NIC":"871791058V","Finger Print ID":"185365","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-20","Back Serial Number":"054313","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.J.Mohamed Dilas","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0021","NIC":"200431300850","Finger Print ID":"185367","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-21","Back Serial Number":"054314","Affective Date":"2025.08.03"},
+        {"Name With Initials":"J.Ahamed Ruzaith","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0022","NIC":"200317500780","Finger Print ID":"185369","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-22","Back Serial Number":"054315","Affective Date":"2025.08.03"},
+        {"Name With Initials":"A.G.Mohamed Ilham","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0023","NIC":"200405210609","Finger Print ID":"185370","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-23","Back Serial Number":"054316","Affective Date":"2025.08.03"},
+        {"Name With Initials":"T.Aski Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0024","NIC":"200128302414","Finger Print ID":"185505","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-24","Back Serial Number":"054317","Affective Date":"2025.08.03"},
+        {"Name With Initials":"M.N.Ammar Haneef","Course Name":"Surveying and Levelling","Year and Batch":"2025B1(NTR)","MIS Number":"JG/25/SLWP -12H/2/0025","NIC":"200315413272","Finger Print ID":"185507","Status":"Participation","Certificate Number":"PT/WS-SL/25/01/152-25","Back Serial Number":"054318","Affective Date":"2025.08.03"},
+        {"Name With Initials":"A.Abisheharan","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0001","NIC":"200328812445","Finger Print ID":"188860","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"K.Muhamed Haakil","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0002","NIC":"200328212612","Finger Print ID":"188861","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.N.Labeeb Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0003","NIC":"200624401610","Finger Print ID":"188862","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"J.Rusaik Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0004","NIC":"200435503823","Finger Print ID":"188863","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"A.J.Al Ashfan Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0005","NIC":"200626101931","Finger Print ID":"188864","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.I.Mufthi Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0006","NIC":"200522402652","Finger Print ID":"188865","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"A.M.Mohamed Shefath","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0007","NIC":"200506101790","Finger Print ID":"188866","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.R.Mohamed Askam","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0008","NIC":"200318400916","Finger Print ID":"188867","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"A.Mohammed Fashrif","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0009","NIC":"200422400597","Finger Print ID":"188868","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.A.Mohamed Nafli","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0010","NIC":"200436300070","Finger Print ID":"188869","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"F.Mohamed Atheef","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0011","NIC":"200413400431","Finger Print ID":"188870","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.U.Nusakkir Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0012","NIC":"990131791V","Finger Print ID":"188871","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"K.Kathursikan","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0013","NIC":"200505704364","Finger Print ID":"188872","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.S.Mohamed Anfas","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0014","NIC":"200510401637","Finger Print ID":"188873","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.F.Mohamed Rislan","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0015","NIC":"200530303941","Finger Print ID":"188874","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.J.Muneer Ahammed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0016","NIC":"200329011768","Finger Print ID":"188875","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.I.Mohammed Ajmath","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0017","NIC":"200400512478","Finger Print ID":"188876","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.T.Thaleek Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0018","NIC":"200530603441","Finger Print ID":"188877","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"I.L.Mohammed Thansith","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0019","NIC":"200309310213","Finger Print ID":"188878","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"A.Mohamed Siros","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0020","NIC":"200121203855","Finger Print ID":"188879","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"S.Dilas Ahamed","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0021","NIC":"200519603186","Finger Print ID":"188880","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.N.Mohamed Izzath","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0022","NIC":"200429500624","Finger Print ID":"188881","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"S.Thanustan","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0023","NIC":"200506204205","Finger Print ID":"188882","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.M.Mohamed Yuthaf","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0024","NIC":"200430301940","Finger Print ID":"188883","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"K.Keshikka","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0025","NIC":"200061802491","Finger Print ID":"188884","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"N.Ashmitha","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0026","NIC":"200370600696","Finger Print ID":"188885","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"P.Surega","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0027","NIC":"200268600186","Finger Print ID":"188886","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"Y.Tharshika","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0028","NIC":"200362011396","Finger Print ID":"188887","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"R.Sivalogitha","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0029","NIC":"200262804274","Finger Print ID":"188888","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.M.Mohammed Ilahi","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0030","NIC":"200734904791","Finger Print ID":"188889","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.N.Rifath","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0031","NIC":"200522001123","Finger Print ID":"188890","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.I.Mohammed Isham","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0032","NIC":"200322112679","Finger Print ID":"188891","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.N.Mohamed Nimry","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0033","NIC":"200104501952","Finger Print ID":"188892","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"A.M.M.Afnan Aakil","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0034","NIC":"200615001342","Finger Print ID":"188893","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"A.K.Sibrak","Course Name":"Surveying and Levelling","Year and Batch":"2025B2(NTR)","MIS Number":"JG/25/SLWP -12H/2.2/0035","NIC":"199700303858","Finger Print ID":"188894","Status":"Participation","Certificate Number":"","Back Serial Number":"","Affective Date":"2025.12.28"},
+        {"Name With Initials":"M.B.Muhammad Ahsan","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0001","NIC":"200600200677","Finger Print ID":"188159","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.H.Asnath Misraj","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0002","NIC":"200311200620","Finger Print ID":"188160","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.Jahaniya","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0003","NIC":"906360195V","Finger Print ID":"188161","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"J.Mohamed Rihas","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0004","NIC":"200528201652","Finger Print ID":"188162","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"N.Mohamed Afath","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0005","NIC":"200400112603","Finger Print ID":"188163","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.N.Mohamed Habli","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0006","NIC":"993331473V","Finger Print ID":"188164","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"J.Kiroshan","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0007","NIC":"981110552V","Finger Print ID":"188165","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"J.Mohamed Satham","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0008","NIC":"200300101959","Finger Print ID":"188166","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.I.Mohamed Iflas","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0009","NIC":"200310500257","Finger Print ID":"188167","Status":"Drop Out","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.F.Abdul Rahman","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0010","NIC":"200310200307","Finger Print ID":"188168","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.A.Nafrij Ahamed","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0011","NIC":"200312800406","Finger Print ID":"188169","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.N.Ahamed Nifras","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0012","NIC":"200333211986","Finger Print ID":"188170","Status":"Drop Out","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.N.Mohamed Naflan","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0013","NIC":"200324000871","Finger Print ID":"188171","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"R.Sahan Ahamed","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0014","NIC":"200602404770","Finger Print ID":"188172","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"N.A.Muhamed Rusthum","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0015","NIC":"200417001493","Finger Print ID":"188173","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.J.Mohamed Dilas","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0016","NIC":"200431300850","Finger Print ID":"188174","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"A.Mohamed Siros","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0017","NIC":"200121203855","Finger Print ID":"188175","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"M.M.Mohamed Atheef","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0018","NIC":"200413601358","Finger Print ID":"188176","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"A.L.Ruslin Ahamed","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0019","NIC":"200227700123","Finger Print ID":"188177","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""},
+        {"Name With Initials":"S.Paviraj","Course Name":"Professional Certificate in CAD& REVIT Architecture","Year and Batch":"2025 B1","MIS Number":"JG/25/PCCADRA/2/0020","NIC":"931592645V","Finger Print ID":"188178","Status":"Following","Certificate Number":"","Back Serial Number":"","Affective Date":""}
+    ];
+
+    function getStatusBadge(status) {
+        let badgeClass = 'bg-secondary';
+        switch (status.trim().toLowerCase()) {
+            case 'complete': badgeClass = 'bg-success'; break;
+            case 'following': badgeClass = 'bg-primary'; break;
+            case 'participation': badgeClass = 'bg-info text-dark'; break;
+            case 'not complete': badgeClass = 'bg-warning text-dark'; break;
+            case 'drop out': badgeClass = 'bg-danger'; break;
+        }
+        return `<span class="badge ${badgeClass} p-2 px-3">${status}</span>`;
+    }
+
+    function searchStudent() {
+        const nicInput = document.getElementById('nicInput');
+        const val = nicInput.value.trim().toUpperCase();
+        const area = document.getElementById('output');
+        
+        area.innerHTML = `<div class="alert alert-info text-center">Searching...</div>`;
+
+        setTimeout(() => {
+            // **FIX**: Use .filter() to find ALL matching records, not just the first one.
+            const results = trainees.filter(s => s["NIC"].trim().toUpperCase() === val);
+
+            if (results.length > 0) {
+                let html = `<h5>Found ${results.length} record(s) for NIC: ${val}</h5>`;
+                
+                // Loop through each result and create a display box for it
+                results.forEach(s => {
+                    html += `
+                        <div class="res-box animate__animated animate__fadeIn">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="res-label">Trainee Name</div>
+                                    <div class="res-value text-primary" style="font-size: 1.4rem;">${s["Name With Initials"]}</div>
+                                </div>
+                                ${getStatusBadge(s.Status)}
+                            </div>
+                            
+                            <div class="res-label">Course Name</div>
+                            <div class="res-value small-font">${s["Course Name"]}</div>
+
+                            <div class="row">
+                                <div class="col-sm-6"><div class="res-label">Year and Batch</div><div class="res-value">${s["Year and Batch"]}</div></div>
+                                <div class="col-sm-6"><div class="res-label">MIS Number</div><div class="res-value">${s["MIS Number"]}</div></div>
+                            </div>
+                             <div class="row">
+                                <div class="col-sm-6"><div class="res-label">NIC</div><div class="res-value">${s.NIC}</div></div>
+                                <div class="col-sm-6"><div class="res-label">Finger Print ID</div><div class="res-value">${s["Finger Print ID"] || 'N/A'}</div></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6"><div class="res-label">Certificate Number</div><div class="res-value">${s["Certificate Number"] || 'N/A'}</div></div>
+                                <div class="col-sm-6"><div class="res-label">Back Serial Number</div><div class="res-value">${s["Back Serial Number"] || 'N/A'}</div></div>
+                            </div>
+                             <div class="row">
+                                <div class="col-sm-6"><div class="res-label">Effective Date</div><div class="res-value">${s["Affective Date"] || 'N/A'}</div></div>
+                            </div>
+                        </div>`;
+                });
+                area.innerHTML = html;
+            } else {
+                area.innerHTML = `<div class="alert alert-danger mt-4 text-center animate__animated animate__shakeX">NIC not found in records. Please check the number and try again.</div>`;
+            }
+            nicInput.value = ""; // Clear input for next search
+        }, 250); 
+    }
+</script>
+
+
+</body></html>
